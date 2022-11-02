@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 const Employee = () => {
     const [post, setPost] = useState([]);
 
     useEffect(() => {
-        axios.get('https://hub.dummyapis.com/employee?noofRecords=10&idStarts=1001').then((res) => {
+        axios.get('https://jsonplaceholder.typicode.com/users').then((res) => {
             console.log(res.data);
             setPost(res.data);
         }).catch((err) => {
@@ -14,13 +15,13 @@ const Employee = () => {
     })
 
 
+
     const postList = post.length ? (post.map((user) => {
         return (
             <React.Fragment key={user.id}>
-                <p>{user.address}</p>
-                <p>{user.contact}</p>
-                <p>{user.dob}</p>
-                <img src={user.imageUrl}></img>
+                <p><Link to={'/employee/' + user.id}>{user.name}</Link></p>
+                <p>{user.username}</p>
+                <p>{user.email}</p>
             </React.Fragment>
         )
     })) : (<p>No posts yet</p>)
