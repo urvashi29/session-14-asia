@@ -52,6 +52,7 @@ class Post extends Component {
         return (
             <>
                 {userDisplay}
+                Post Data
             </>
         )
     }
